@@ -4,6 +4,10 @@
   "description": "Syntax highlighting for the Blots expression language",
   "license": "MIT",
   "version": "0.1.0",
+  "repository": "https://github.com/paul-russo/blots-syntax",
+  "scripts": {
+    "build": "vsce package"
+  },
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -31,5 +35,8 @@
         "path": "./syntaxes/blots.tmLanguage.json"
       }
     ]
+  },
+  "devDependencies": {
+    "vsce": "^2.15.0"
   }
 }
