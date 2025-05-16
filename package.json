@@ -1,0 +1,35 @@
+{
+  "name": "blots-syntax",
+  "displayName": "Blots Syntax Highlighting",
+  "description": "Syntax highlighting for the Blots expression language",
+  "license": "MIT",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "blots",
+        "aliases": [
+          "Blots",
+          "blots"
+        ],
+        "extensions": [
+          ".blot"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "blots",
+        "scopeName": "source.blots",
+        "path": "./syntaxes/blots.tmLanguage.json"
+      }
+    ]
+  }
+}
