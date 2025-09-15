@@ -25,6 +25,9 @@
       "include": "#lambdas"
     },
     {
+      "include": "#groups"
+    },
+    {
       "include": "#identifiers"
     }
   ],
@@ -180,10 +183,13 @@
           }
         },
         {
-          "begin": "\\(",
-          "end": "\\)(?=\\s*=>)",
+          "begin": "\\((?=[^\\n\\)]*\\)[ \t]*=>)",
+          "end": "\\)(?=[ \t]*=>)",
           "name": "meta.parameters.blots",
           "patterns": [
+            {
+              "include": "#comments"
+            },
             {
               "match": "(\\.\\.\\.)?(\\w+)(\\?)?",
               "captures": {
@@ -202,6 +208,25 @@
               "match": ",",
               "name": "punctuation.separator.comma.blots"
             }
+          ]
+        }
+      ]
+    },
+    "groups": {
+      "patterns": [
+        {
+          "begin": "\\(",
+          "end": "\\)",
+          "name": "meta.group.blots",
+          "patterns": [
+            { "include": "#comments" },
+            { "include": "#strings" },
+            { "include": "#numbers" },
+            { "include": "#keywords" },
+            { "include": "#operators" },
+            { "include": "#identifiers" },
+            { "include": "#lambdas" },
+            { "include": "#groups" }
           ]
         }
       ]
