@@ -7,6 +7,9 @@
       "include": "#comments"
     },
     {
+      "include": "#constants"
+    },
+    {
       "include": "#keywords"
     },
     {
@@ -17,6 +20,9 @@
     },
     {
       "include": "#numbers"
+    },
+    {
+      "include": "#lambdas"
     },
     {
       "include": "#identifiers"
@@ -31,19 +37,95 @@
         }
       ]
     },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b(true|false)\\b",
+          "name": "constant.language.boolean.blots"
+        },
+        {
+          "match": "\\bnull\\b",
+          "name": "constant.language.null.blots"
+        }
+      ]
+    },
     "keywords": {
       "patterns": [
         {
-          "match": "\\b(if|then|else|output|each|with)\\b",
-          "name": "keyword.control.blots"
+          "match": "\\b(if|then|else)\\b",
+          "name": "keyword.control.conditional.blots"
+        },
+        {
+          "match": "\\b(do|return)\\b",
+          "name": "keyword.control.flow.blots"
+        },
+        {
+          "match": "\\boutput\\b",
+          "name": "keyword.other.output.blots"
+        },
+        {
+          "match": "\\b(via|into)\\b",
+          "name": "keyword.operator.natural.blots"
         }
       ]
     },
     "operators": {
       "patterns": [
         {
-          "match": "(=>|\\+|-|\\*|/|%|\\^|==|!=|<=|<|>=|>|&&|\\|\\||\\?\\?|!|\\.|=|\\{|\\}|\\[|\\]|\\(|\\)|,|\\?|\\.\\.\\.|_|\\band\\b|\\bor\\b)",
-          "name": "keyword.operator.blots"
+          "match": "=>",
+          "name": "storage.type.function.arrow.blots"
+        },
+        {
+          "match": "\\.\\.\\.",
+          "name": "keyword.operator.spread.blots"
+        },
+        {
+          "match": "\\?\\?",
+          "name": "keyword.operator.coalesce.blots"
+        },
+        {
+          "match": "\\|\\||&&",
+          "name": "keyword.operator.logical.blots"
+        },
+        {
+          "match": "\\b(and|or|not)\\b",
+          "name": "keyword.operator.logical.word.blots"
+        },
+        {
+          "match": "==|!=|<=|>=|<|>",
+          "name": "keyword.operator.comparison.blots"
+        },
+        {
+          "match": "[+\\-*/%^]",
+          "name": "keyword.operator.arithmetic.blots"
+        },
+        {
+          "match": "!",
+          "name": "keyword.operator.logical.not.blots"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.assignment.blots"
+        },
+        {
+          "match": "\\?",
+          "name": "keyword.operator.optional.blots"
+        },
+        {
+          "match": "\\.",
+          "name": "punctuation.accessor.blots"
+        },
+        {
+          "match": ":",
+          "name": "punctuation.separator.key-value.blots"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.comma.blots"
+        },
+        {
+          "match": ";",
+          "name": "punctuation.terminator.statement.blots"
         }
       ]
     },
@@ -76,8 +158,51 @@
     "numbers": {
       "patterns": [
         {
-          "match": "\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b",
+          "match": "(?<!\\w)([+-]?\\d+(_+\\d+)*(\\.\\d+)?([eE][+-]?\\d+)?|\\.\\d+([eE][+-]?\\d+)?)\\b",
           "name": "constant.numeric.blots"
+        }
+      ]
+    },
+    "lambdas": {
+      "patterns": [
+        {
+          "match": "(\\.\\.\\.)?(\\w+)(\\?)?(?=\\s*=>)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.spread.blots"
+            },
+            "2": {
+              "name": "variable.parameter.blots"
+            },
+            "3": {
+              "name": "keyword.operator.optional.blots"
+            }
+          }
+        },
+        {
+          "begin": "\\(",
+          "end": "\\)(?=\\s*=>)",
+          "name": "meta.parameters.blots",
+          "patterns": [
+            {
+              "match": "(\\.\\.\\.)?(\\w+)(\\?)?",
+              "captures": {
+                "1": {
+                  "name": "keyword.operator.spread.blots"
+                },
+                "2": {
+                  "name": "variable.parameter.blots"
+                },
+                "3": {
+                  "name": "keyword.operator.optional.blots"
+                }
+              }
+            },
+            {
+              "match": ",",
+              "name": "punctuation.separator.comma.blots"
+            }
+          ]
         }
       ]
     },
