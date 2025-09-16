@@ -6,7 +6,7 @@
   "version": "0.4.0",
   "repository": "https://github.com/paul-russo/blots-syntax",
   "scripts": {
-    "build": "vsce package"
+    "package": "vsce package"
   },
   "engines": {
     "vscode": "^1.60.0"
@@ -26,7 +26,11 @@
           ".blot",
           ".blots"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/blots-logo-small.png",
+          "dark": "./icons/blots-logo-inverted-small.png"
+        }
       }
     ],
     "grammars": [
@@ -38,6 +42,6 @@
     ]
   },
   "devDependencies": {
-    "vsce": "^2.15.0"
+    "@vscode/vsce": "^3.6.0"
   }
 }
