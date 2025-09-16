@@ -1,7 +1,7 @@
 {
   "name": "blots-syntax",
-  "displayName": "Blots Syntax Highlighting",
-  "description": "Syntax highlighting for the Blots programming language.",
+  "displayName": "Blots",
+  "description": "Language support for the Blots programming language.",
   "publisher": "blots",
   "license": "MIT",
   "version": "0.4.0",
