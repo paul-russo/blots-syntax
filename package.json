@@ -4,8 +4,9 @@
   "description": "Language support for the Blots programming language.",
   "publisher": "blots",
   "license": "MIT",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "repository": "https://github.com/paul-russo/blots-syntax",
+  "icon": "icons/blots-logo-purple.png",
   "scripts": {
     "build": "vsce package",
     "publish": "vsce publish"
