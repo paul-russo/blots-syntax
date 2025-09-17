@@ -4,7 +4,7 @@
   "description": "Language support for the Blots programming language.",
   "publisher": "blots",
   "license": "MIT",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "repository": "https://github.com/paul-russo/blots-syntax",
   "homepage": "https://blots-lang.org",
   "icon": "icons/blots-logo-purple.png",
