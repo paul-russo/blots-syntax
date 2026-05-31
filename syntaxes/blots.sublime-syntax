@@ -1,0 +1,133 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Blots
+file_extensions:
+  - blots
+  - blot
+scope: source.blots
+contexts:
+  main:
+    - include: comments
+    - include: constants
+    - include: keywords
+    - include: operators
+    - include: strings
+    - include: numbers
+    - include: lambdas
+    - include: groups
+    - include: special-identifiers
+    - include: built-in-functions
+    - include: identifiers
+  built-in-functions:
+    - match: \b(sqrt|sin|cos|tan|asin|acos|atan|log|log10|exp|abs|floor|ceil|round|trunc|random|min|max|avg|sum|prod|median|percentile|range|len|head|tail|slice|concat|dot|unique|sort|sort_by|reverse|any|all|map|reduce|filter|every|some|split|join|replace|trim|uppercase|lowercase|includes|format|typeof|arity|to_string|to_number|to_bool|keys|values|entries|convert)\b(?=\s*\()
+      scope: support.function.builtin.blots
+  comments:
+    - match: //.*$
+      scope: comment.line.double-slash.blots
+  constants:
+    - match: \b(true|false)\b
+      scope: constant.language.boolean.blots
+    - match: \bnull\b
+      scope: constant.language.null.blots
+  groups:
+    - match: \(
+      push:
+        - meta_scope: meta.group.blots
+        - match: \)
+          pop: true
+        - include: comments
+        - include: strings
+        - include: numbers
+        - include: keywords
+        - include: operators
+        - include: special-identifiers
+        - include: built-in-functions
+        - include: identifiers
+        - include: lambdas
+        - include: groups
+  identifiers:
+    - match: '\b[a-zA-Z_][a-zA-Z0-9_]*\b'
+      scope: variable.other.blots
+  keywords:
+    - match: \b(if|then|else)\b
+      scope: keyword.control.conditional.blots
+    - match: \b(do|return)\b
+      scope: keyword.control.flow.blots
+    - match: \boutput\b
+      scope: keyword.other.output.blots
+    - match: \b(via|into|where)\b
+      scope: keyword.operator.natural.blots
+  lambdas:
+    - match: (\.\.\.)?(\w+)(\?)?(?=\s*=>)
+      captures:
+        1: keyword.operator.spread.blots
+        2: variable.parameter.blots
+        3: keyword.operator.optional.blots
+    - match: '\((?=[^\n\)]*\)[ 	]*=>)'
+      push:
+        - meta_scope: meta.parameters.blots
+        - match: '\)(?=[ 	]*=>)'
+          pop: true
+        - include: comments
+        - match: (\.\.\.)?(\w+)(\?)?
+          captures:
+            1: keyword.operator.spread.blots
+            2: variable.parameter.blots
+            3: keyword.operator.optional.blots
+        - match: ","
+          scope: punctuation.separator.comma.blots
+  numbers:
+    - match: '(?<!\w)([+-]?\d+(_+\d+)*(\.\d+)?([eE][+-]?\d+)?|\.\d+([eE][+-]?\d+)?)\b'
+      scope: constant.numeric.blots
+  operators:
+    - match: "=>"
+      scope: storage.type.function.arrow.blots
+    - match: \.\.\.
+      scope: keyword.operator.spread.blots
+    - match: '\.==|\.!=|\.<[=>]?|\.[>]=?'
+      scope: keyword.operator.comparison.dot.blots
+    - match: \?\?
+      scope: keyword.operator.coalesce.blots
+    - match: \|\||&&
+      scope: keyword.operator.logical.blots
+    - match: \b(and|or|not)\b
+      scope: keyword.operator.logical.word.blots
+    - match: "==|!=|<=|>=|<|>"
+      scope: keyword.operator.comparison.blots
+    - match: '[+\-*/%^]'
+      scope: keyword.operator.arithmetic.blots
+    - match: "!"
+      scope: keyword.operator.logical.not.blots
+    - match: "="
+      scope: keyword.operator.assignment.blots
+    - match: \?
+      scope: keyword.operator.optional.blots
+    - match: "#(?=[a-zA-Z_])"
+      scope: punctuation.accessor.inputs.blots
+    - match: \.
+      scope: punctuation.accessor.blots
+    - match: ":"
+      scope: punctuation.separator.key-value.blots
+    - match: ","
+      scope: punctuation.separator.comma.blots
+    - match: ;
+      scope: punctuation.terminator.statement.blots
+  special-identifiers:
+    - match: \b(constants|inputs|outputs)\b
+      scope: variable.language.special.blots
+  strings:
+    - match: '"'
+      push:
+        - meta_scope: string.quoted.double.blots
+        - match: '"'
+          pop: true
+        - match: \\.
+          scope: constant.character.escape.blots
+    - match: "'"
+      push:
+        - meta_scope: string.quoted.single.blots
+        - match: "'"
+          pop: true
+        - match: \\.
+          scope: constant.character.escape.blots
